@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c5dc811de0bf3f24a8d96800cccbfadd
+timeCreated: 1457003983
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - interestBubble: {fileID: 159680, guid: 8c58538bf986aaf49a7f00bd125b1995, type: 2}
+  - questionBubble: {fileID: 114410, guid: 66ca48c0a9e95b047a31ea8279e3396f, type: 2}
+  - happyBubble: {fileID: 102280, guid: 016b3a03265eedd43a038f6bd02d9a6d, type: 2}
+  - sadBubble: {fileID: 190588, guid: abb963c35d23dca4fb22387c9b48f890, type: 2}
+  - mediumBubble: {fileID: 101668, guid: 059c9d46442cde343ab25997fe2075f2, type: 2}
+  - genericNPCHouse: {instanceID: 0}
+  - optionBubble: {fileID: 180872, guid: 35260405577cb8a4b8c7f51680fbb648, type: 2}
+  - textOption: {fileID: 100980, guid: 4fd3d398ea9d5034bb8359a15f8e5ed4, type: 2}
+  - giftOption: {fileID: 166512, guid: 14dc476bdac4194488d1425e5da4aea5, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
