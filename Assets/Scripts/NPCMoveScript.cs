@@ -19,15 +19,15 @@ public class NPCMoveScript : MonoBehaviour {
     float distToPlayer; // distance to player, if this is less than 2 you can talk to them
     bool canTalkToPlayer;
     GameObject thisNPCsHouse;
-    float happiness = 0; // happiness is how happy the villager is, this goes from 0 to 30 with 0 being devastated and 30 being really happy
-    bool hasNews; // this determines whether or not the npc has something to tell to the player
+    
+    NPCInfoHolder npcInfo;
 
     // Use this for initialization
     void Start () {
         rigidBod = gameObject.GetComponent<Rigidbody2D>();
         Vector3 housePos = new Vector3(transform.position.x, transform.position.y);
         thisNPCsHouse = Instantiate(genericNPCHouse, housePos, Quaternion.identity) as GameObject;
-        happiness = Random.Range(0, 31);
+        npcInfo = gameObject.GetComponent<NPCInfoHolder>();
         isTalkingToPlayer = false;
 
 	}
@@ -92,14 +92,15 @@ public class NPCMoveScript : MonoBehaviour {
         {
             if (!canTalkToPlayer)
             {
+                
                 GameObject toInstantiate;
-                if (hasNews)
+                if (npcInfo.hasNews)
                 {
                     toInstantiate = interestBubble;
-                } else if (happiness > 20)
+                } else if (npcInfo.happiness > 20)
                 {
                     toInstantiate = happyBubble;
-                } else if (happiness > 10)
+                } else if (npcInfo.happiness > 10)
                 {
                     toInstantiate = mediumBubble;
                 } else
@@ -155,12 +156,12 @@ public class NPCMoveScript : MonoBehaviour {
                             GameObject instance = Instantiate(optionBubble, bubbleVector, Quaternion.identity) as GameObject;
                             instance.transform.SetParent(transform);
 
-                            Vector3 giftChoiceVector = new Vector3(transform.position.x, transform.position.y + 3);
+                            Vector3 giftChoiceVector = new Vector3(transform.position.x + 1.15f, transform.position.y + 3.3f);
                             GameObject choice1Instance = Instantiate(giftOption, giftChoiceVector, Quaternion.identity) as GameObject;
                             choice1Instance.transform.SetParent(transform);
 
-                            Vector3 textChoiceVector = new Vector3(bubbleVector.x, bubbleVector.y);
-                            GameObject choice2Instance = Instantiate(textOption, giftChoiceVector, Quaternion.identity) as GameObject;
+                            Vector3 textChoiceVector = new Vector3(transform.position.x  + 0.42f, transform.position.y + 3.3f);
+                            GameObject choice2Instance = Instantiate(textOption, textChoiceVector, Quaternion.identity) as GameObject;
                             choice2Instance.transform.SetParent(transform);
 
                             moveType = 0;
@@ -168,6 +169,15 @@ public class NPCMoveScript : MonoBehaviour {
 
 
                         }
+                    } else if (hit.collider.tag == "TextChoice")
+                    {
+                        NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
+                        NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
+
+                    } else if (hit.collider.tag == "giftChoice")
+                    {
+                        NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
+                        NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
                     }
 
                 }

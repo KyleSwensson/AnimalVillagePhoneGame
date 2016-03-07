@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\HouseScript.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
+    <Compile Include="Assets\Scripts\NPCInfoHolder.cs" />
     <Compile Include="Assets\Scripts\NPCMoveScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMoveScript.cs" />
     <Compile Include="Assets\Scripts\bubbleScript.cs" />
