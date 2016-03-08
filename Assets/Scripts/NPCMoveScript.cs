@@ -12,12 +12,12 @@ public class NPCMoveScript : MonoBehaviour {
     public GameObject optionBubble;
     public GameObject textOption;
     public GameObject giftOption;
-    bool isTalkingToPlayer; // true when they player presses on this guy
-    int moveDuration; // variable to tell how long current movement lasts
-    int moveType; // tells what type of move currently on, 0 = standing, 1 = moving left, 2 = moving right
+    public GameObject itemGrid;
+    public GameObject backButton;
+    public GameObject continueButton;
+    
     Rigidbody2D rigidBod;
     float distToPlayer; // distance to player, if this is less than 2 you can talk to them
-    bool canTalkToPlayer;
     GameObject thisNPCsHouse;
     
     NPCInfoHolder npcInfo;
@@ -28,41 +28,41 @@ public class NPCMoveScript : MonoBehaviour {
         Vector3 housePos = new Vector3(transform.position.x, transform.position.y);
         thisNPCsHouse = Instantiate(genericNPCHouse, housePos, Quaternion.identity) as GameObject;
         npcInfo = gameObject.GetComponent<NPCInfoHolder>();
-        isTalkingToPlayer = false;
+        npcInfo.isTalkingToPlayer = false;
 
 	}
 
     private void decideNextMove()
     {
-        moveDuration = Random.Range(10, 60); // makes random move duration between 30 and 120 frames
-        moveType = Random.Range(0, 3);
-        if (moveType == 0)
+        npcInfo.moveDuration = Random.Range(10, 60); // makes random move duration between 30 and 120 frames
+        npcInfo.moveType = Random.Range(0, 3);
+        if (npcInfo.moveType == 0)
         {
-            moveDuration += 15;
+            npcInfo.moveDuration += 15;
         }
 
     }
 
     // Update is called once per frame
     void Update () {
-        if (!isTalkingToPlayer)
+        if (!npcInfo.isTalkingToPlayer)
         {
-            if (moveDuration <= 0)
+            if (npcInfo.moveDuration <= 0)
             {
                 decideNextMove();
             }
             else
             {
-                moveDuration--;
-                if (moveType == 0)
+                npcInfo.moveDuration--;
+                if (npcInfo.moveType == 0)
                 {
                     rigidBod.velocity = new Vector2(0, 0);
                 }
-                else if (moveType == 1)
+                else if (npcInfo.moveType == 1)
                 {
                     rigidBod.AddForce(new Vector2(40, 0));
                 }
-                else if (moveType == 2)
+                else if (npcInfo.moveType == 2)
                 {
                     rigidBod.AddForce(new Vector2(-40, 0));
                 }
@@ -90,99 +90,45 @@ public class NPCMoveScript : MonoBehaviour {
         distToPlayer = Mathf.Abs(transform.position.x - playerPos.x);
         if (distToPlayer < 2)
         {
-            if (!canTalkToPlayer)
+            if (!npcInfo.canTalkToPlayer)
             {
-                
+
                 GameObject toInstantiate;
                 if (npcInfo.hasNews)
                 {
                     toInstantiate = interestBubble;
-                } else if (npcInfo.happiness > 20)
+                }
+                else if (npcInfo.happiness > 20)
                 {
                     toInstantiate = happyBubble;
-                } else if (npcInfo.happiness > 10)
+                }
+                else if (npcInfo.happiness > 10)
                 {
                     toInstantiate = mediumBubble;
-                } else
+                }
+                else
                 {
                     toInstantiate = sadBubble;
                 }
                 Vector3 bubbleVector = new Vector3(transform.position.x, transform.position.y + 3);
                 GameObject instanceF = Instantiate(toInstantiate, bubbleVector, Quaternion.identity) as GameObject;
                 instanceF.transform.SetParent(transform);
-                canTalkToPlayer = true;
+                npcInfo.canTalkToPlayer = true;
             }
-            
-        
-        } else
+
+
+        }
+        else
         {
-            if (canTalkToPlayer)
+            if (npcInfo.canTalkToPlayer)
             {
                 foreach (Transform child in transform)
                 {
                     Destroy(child.gameObject);
                 }
-                canTalkToPlayer = false;
-                isTalkingToPlayer = false;
+                npcInfo.canTalkToPlayer = false;
+                npcInfo.isTalkingToPlayer = false;
             }
-        }
-
-
-        int i = 0;
-        while (i < Input.touchCount)
-        {
-
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
-            {
-                //Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
-
-                Debug.Log("TAP !");
-
-                if (hit.collider != null)
-                {
-
-                    if (hit.collider.tag == "NPC")
-                    {
-                        if (canTalkToPlayer && !isTalkingToPlayer)
-                        {
-                            isTalkingToPlayer = true;
-                            foreach (Transform child in transform)
-                            {
-                                Destroy(child.gameObject);
-                            }
-
-                            Vector3 bubbleVector = new Vector3(transform.position.x, transform.position.y + 3);
-                            GameObject instance = Instantiate(optionBubble, bubbleVector, Quaternion.identity) as GameObject;
-                            instance.transform.SetParent(transform);
-
-                            Vector3 giftChoiceVector = new Vector3(transform.position.x + 1.15f, transform.position.y + 3.3f);
-                            GameObject choice1Instance = Instantiate(giftOption, giftChoiceVector, Quaternion.identity) as GameObject;
-                            choice1Instance.transform.SetParent(transform);
-
-                            Vector3 textChoiceVector = new Vector3(transform.position.x  + 0.42f, transform.position.y + 3.3f);
-                            GameObject choice2Instance = Instantiate(textOption, textChoiceVector, Quaternion.identity) as GameObject;
-                            choice2Instance.transform.SetParent(transform);
-
-                            moveType = 0;
-                            moveDuration = 50;
-
-
-                        }
-                    } else if (hit.collider.tag == "TextChoice")
-                    {
-                        NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
-                        NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
-
-                    } else if (hit.collider.tag == "giftChoice")
-                    {
-                        NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
-                        NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
-                    }
-
-                }
-            }
-            ++i;
         }
 
     }

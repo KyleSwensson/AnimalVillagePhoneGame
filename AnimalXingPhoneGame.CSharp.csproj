@@ -65,11 +65,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HouseScript.cs" />
+    <Compile Include="Assets\Scripts\ItemGridSpawn.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MapManager.cs" />
     <Compile Include="Assets\Scripts\NPCInfoHolder.cs" />
     <Compile Include="Assets\Scripts\NPCMoveScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMoveScript.cs" />
+    <Compile Include="Assets\Scripts\TapManager.cs" />
     <Compile Include="Assets\Scripts\bubbleScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

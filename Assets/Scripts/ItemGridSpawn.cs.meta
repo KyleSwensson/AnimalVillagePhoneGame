@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 72865b060a33b4c468cf07d490e94010
+timeCreated: 1457426823
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - backButton: {fileID: 198964, guid: ad6c3598bf46f39499e855319aefb159, type: 2}
+  - contButton: {fileID: 172564, guid: c3c5ecd362cd69240a94886af5aa7e86, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
