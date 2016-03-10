@@ -4,16 +4,18 @@ using System.Collections;
 public class PlayerMoveScript : MonoBehaviour {
 
     public static PlayerMoveScript instance = null;
-    bool isInteracting;
-    GameObject interactingNPC;
+    public bool isInteracting;
+    public GameObject connectedGiftBox;
+    public GameObject interactingNPC;
     Rigidbody2D rigidBod;
-    int interactState; // int that represents interaction state with an npc, defined as following 
+    public int interactState; // int that represents interaction state with an npc, defined as following 
     // 0 = no interaction, 1 = in option phase, 2 = being talked to, 3 = in gift phase
 
     void Awake()
     {
         isInteracting = false;
         interactingNPC = null;
+        connectedGiftBox = null;
 
         if (instance == null) // if no previous manager
         {

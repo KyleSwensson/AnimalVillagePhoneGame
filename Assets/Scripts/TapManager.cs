@@ -53,6 +53,7 @@ public class TapManager : MonoBehaviour {
 
                             attachedNPCInfo.moveType = 0;
                             attachedNPCInfo.moveDuration = 50;
+                            PlayerMoveScript.instance.interactState = 1;
 
 
                         }
@@ -62,7 +63,7 @@ public class TapManager : MonoBehaviour {
                         NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
                         NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
 
-
+                        PlayerMoveScript.instance.interactState = 2;
 
 
                     }
@@ -76,6 +77,29 @@ public class TapManager : MonoBehaviour {
                         Vector3 itemBoxVector = new Vector3(attachedNPC.transform.position.x - 2f, attachedNPC.transform.position.y + 2.5f);
                         GameObject Instance = Instantiate(attachedNPC.itemGrid, itemBoxVector, Quaternion.identity) as GameObject;
                         Instance.transform.SetParent(attachedNPC.transform);
+                        PlayerMoveScript.instance.connectedGiftBox = Instance;
+                        PlayerMoveScript.instance.interactState = 3; // player in gift state now
+                    }
+
+                    else if (hit.collider.tag == "BackButton")
+                    {
+                        NPCMoveScript attachedNPC = hit.collider.transform.parent.GetComponent<NPCMoveScript>();
+                        NPCInfoHolder attachedNPCInfo = hit.collider.transform.parent.GetComponent<NPCInfoHolder>();
+                        if (PlayerMoveScript.instance.interactState == 3)
+                        {
+                            // delete the gift box thing without doing anything
+                            Destroy(PlayerMoveScript.instance.connectedGiftBox);
+                        }
+
+                        PlayerMoveScript.instance.interactState = 0; // gos back to no interaction state
+                        
+                        
+                    } else if (hit.collider.tag == "ContinueButton")
+                    {
+                        if (PlayerMoveScript.instance.interactState == 3)
+                        {
+                            // TODO: give NPC the selected item
+                        }
                     }
 
                 }
