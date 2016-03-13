@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MapManager : MonoBehaviour {
+public class MapManager : MonoBehaviour
+{
     public int height = 10; // height of ground
     public int width = 120; // how many tiles wide ground is
     public GameObject grassTile;
     public GameObject dirtTile;
     public GameObject genericNPC;
     public GameObject fenceTile;
+    public GameObject[] pickupArray;
 
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -35,7 +37,7 @@ public class MapManager : MonoBehaviour {
     {
         // sets up outer wall and floor of game
         boardHolder = new GameObject("Board").transform;
-       
+
 
         for (int x = 0; x < width; x++)
         {
@@ -48,7 +50,7 @@ public class MapManager : MonoBehaviour {
                 {
                     // if tile is on top edge instantiate grass tile instead
                     toInstantiate = grassTile;
-                    
+
                 }
 
 
@@ -90,6 +92,18 @@ public class MapManager : MonoBehaviour {
 
         }
     }
+    void spawnPickups()
+    {
+        int pickupCount = Random.Range(4, 9);
+
+        for (int i = 0; i < pickupCount; i++)
+        {
+            Vector3 randomPosition = new Vector3(Random.Range(10, width - 10), 10f);
+            GameObject pickupToInst = pickupArray[Random.Range(0, pickupArray.Length)];
+            Instantiate(pickupToInst, randomPosition, Quaternion.identity);
+        }
+    }
+
 
     void LayoutNPCs(GameObject npc, int minNum, int maxNum)
     {
@@ -110,6 +124,7 @@ public class MapManager : MonoBehaviour {
         BoardSetup();
         InitializeList();
         LayoutNPCs(genericNPC, 3, 3);
+        spawnPickups();
         //LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         //LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
         //int enemyCount = (int)Mathf.Log(level, 2f);
@@ -119,12 +134,14 @@ public class MapManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

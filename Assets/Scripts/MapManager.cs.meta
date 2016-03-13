@@ -1,10 +1,14 @@
 fileFormatVersion: 2
-guid: a65620d2665ade149ae551d03cd91aa0
-timeCreated: 1454562657
+guid: d1c7688eac07dd94ca84606faef078ac
+timeCreated: 1457849872
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - grassTile: {fileID: 176128, guid: 2c94c2bf0d1703f49b0b9a327f6c300e, type: 2}
+  - dirtTile: {fileID: 178254, guid: eecad31311a85ef479c3d7fc5c9551df, type: 2}
+  - genericNPC: {fileID: 175914, guid: 2f7b5be0c0d7ef444942e8a9b6347453, type: 2}
+  - fenceTile: {fileID: 168684, guid: 75f02da7296148148b692fdb886a3741, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
