@@ -100,6 +100,30 @@ public class TapManager : MonoBehaviour {
                         {
                             // TODO: give NPC the selected item
                         }
+                    } else if (hit.collider.tag == "PickupItem")
+                    {
+                        Debug.Log("hit pickup item");
+                        Debug.Log(hit.collider.gameObject.name);
+                        if (hit.collider.gameObject.name == "Stick(Clone)")
+                        {
+
+                            if (PlayerMoveScript.instance.hasInvSpace())
+                            {
+                                PlayerMoveScript.instance.inventory.Add(1);
+                                Destroy(hit.collider.gameObject);
+                            }
+                        } else if (hit.collider.gameObject.name == "Statue(Clone)")
+                        {
+
+                            if (PlayerMoveScript.instance.hasInvSpace())
+                            {
+                                PlayerMoveScript.instance.inventory.Add(2);
+                                Destroy(hit.collider.gameObject);
+                            }
+                        }
+
+
+
                     }
 
                 }

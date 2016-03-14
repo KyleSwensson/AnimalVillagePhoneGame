@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using System.Collections.Generic;
+
 public class PlayerMoveScript : MonoBehaviour {
 
     public static PlayerMoveScript instance = null;
@@ -10,9 +12,12 @@ public class PlayerMoveScript : MonoBehaviour {
     Rigidbody2D rigidBod;
     public int interactState; // int that represents interaction state with an npc, defined as following 
     // 0 = no interaction, 1 = in option phase, 2 = being talked to, 3 = in gift phase
+    public List<int> inventory; // a list containing all items in inv, max length = 12, 1 = a stick 2 = a statue
+    const int maxInvSize = 12;
 
     void Awake()
     {
+        inventory = new List<int>();
         isInteracting = false;
         interactingNPC = null;
         connectedGiftBox = null;
@@ -27,6 +32,17 @@ public class PlayerMoveScript : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject); // when a new scene is loaded normally all game objects are destroyed
         ;
+    }
+
+    public bool hasInvSpace()
+    {
+        if (inventory.Count < maxInvSize)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
 
