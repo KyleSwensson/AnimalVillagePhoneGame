@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalXingPhoneGame.CSharp", "AnimalXingPhoneGame.CSharp.csproj", "{C2E4802E-8B5F-86BE-004E-779EFAE6BA3D}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{9918D59A-9A52-629C-987C-1B4341D41B41}") = "AnimalXingPhoneGame", "Assembly-CSharp.csproj", "{2E2AB348-0B03-014F-5944-4D761519F518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2E4802E-8B5F-86BE-004E-779EFAE6BA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2E4802E-8B5F-86BE-004E-779EFAE6BA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2E4802E-8B5F-86BE-004E-779EFAE6BA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2E4802E-8B5F-86BE-004E-779EFAE6BA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E2AB348-0B03-014F-5944-4D761519F518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E2AB348-0B03-014F-5944-4D761519F518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E2AB348-0B03-014F-5944-4D761519F518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E2AB348-0B03-014F-5944-4D761519F518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

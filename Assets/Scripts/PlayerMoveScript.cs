@@ -14,9 +14,11 @@ public class PlayerMoveScript : MonoBehaviour {
     // 0 = no interaction, 1 = in option phase, 2 = being talked to, 3 = in gift phase
     public List<int> inventory; // a list containing all items in inv, max length = 12, 1 = a stick 2 = a statue
     const int maxInvSize = 12;
+	public int menuState; // int that represents the current menu open in game, if 0 no menu is open, if 1 then options menu is open, if 2 then inventory is open
 
     void Awake()
     {
+		menuState = 0;
         inventory = new List<int>();
         isInteracting = false;
         interactingNPC = null;
