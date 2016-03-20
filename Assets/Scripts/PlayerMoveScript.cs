@@ -33,7 +33,7 @@ public class PlayerMoveScript : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject); // when a new scene is loaded normally all game objects are destroyed
-        ;
+        
     }
 
     public bool hasInvSpace()

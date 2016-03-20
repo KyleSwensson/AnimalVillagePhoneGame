@@ -112,13 +112,14 @@ public class TapManager : MonoBehaviour {
 						if (PlayerMoveScript.instance.menuState == 0) {
 							//open inventory
 
-							Vector3 instanceVector = new Vector3 (2, 2);
+							Vector3 instanceVector = new Vector3 (5, 12);
 							GameObject Instance = Instantiate (itemGrid, instanceVector, Quaternion.identity) as GameObject;
-							Instance.transform.SetParent (PlayerMoveScript.instance.transform);
-
+							Instance.transform.SetParent (PlayerMoveScript.instance.gameObject.transform);
+							PlayerMoveScript.instance.menuState = 2;
 
 						} else if (PlayerMoveScript.instance.menuState == 2) {
 							// close inventory
+							PlayerMoveScript.instance.menuState = 0;
 							foreach (Transform child in PlayerMoveScript.instance.transform)
 							{
 								if (child.tag == "ItemGrid") {
