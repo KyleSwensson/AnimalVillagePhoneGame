@@ -17,18 +17,18 @@ public class ItemGridSpawn : MonoBehaviour {
 	Vector3[] gridPos = new Vector3[12];
 	// Use this for initialization
 	void Start () {
-		gridPos[0] = new Vector3 (0, 0);
-		gridPos[1] = new Vector3 (1, 0);
-		gridPos[2] = new Vector3 (2, 0);
-		gridPos[3] = new Vector3 (0, 1);
-		gridPos[4] = new Vector3 (1, 1);
-		gridPos[5] = new Vector3 (2, 1);
-		gridPos[6] = new Vector3 (3, 1);
-		gridPos[7] = new Vector3 (4, 1);
-		gridPos[8] = new Vector3 (0, 2);
-		gridPos[9] = new Vector3 (1,2);
-		gridPos[10] = new Vector3 (2, 2);
-		gridPos[11] = new Vector3 (3, 2);
+		gridPos[0] = new Vector3 (transform.position.x + 0, transform.position.y + 0);
+		gridPos[1] = new Vector3 (transform.position.x + 1,transform.position.y +  0);
+		gridPos[2] = new Vector3 (transform.position.x + 2,transform.position.y +  0);
+		gridPos[3] = new Vector3 (transform.position.x + 0,transform.position.y +  1);
+		gridPos[4] = new Vector3 (transform.position.x + 1,transform.position.y +  1);
+		gridPos[5] = new Vector3 (transform.position.x + 2,transform.position.y +  1);
+		gridPos[6] = new Vector3 (transform.position.x + 3,transform.position.y +  1);
+		gridPos[7] = new Vector3 (transform.position.x + 4,transform.position.y +  1);
+		gridPos[8] = new Vector3 (transform.position.x + 0,transform.position.y +  2);
+		gridPos[9] = new Vector3 (transform.position.x + 1,transform.position.y + 2);
+		gridPos[10] = new Vector3 (transform.position.x + 2,transform.position.y +  2);
+		gridPos[11] = new Vector3 (transform.position.x + 3,transform.position.y +  2);
 
 
 		int accum = 0;
@@ -47,6 +47,8 @@ public class ItemGridSpawn : MonoBehaviour {
 				itemToInst = null;
 				break;
 			}
+			GameObject newIcon = Instantiate (itemToInst, newItemVector, Quaternion.identity) as GameObject;
+			newIcon.transform.SetParent (transform);
 
 
 				

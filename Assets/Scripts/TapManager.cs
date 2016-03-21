@@ -115,6 +115,7 @@ public class TapManager : MonoBehaviour {
 							Vector3 instanceVector = new Vector3 (5, 12);
 							GameObject Instance = Instantiate (itemGrid, instanceVector, Quaternion.identity) as GameObject;
 							Instance.transform.SetParent (PlayerMoveScript.instance.gameObject.transform);
+							Instance.GetComponent<ItemGridSpawn> ().invList = PlayerMoveScript.instance.inventory;
 							PlayerMoveScript.instance.menuState = 2;
 
 						} else if (PlayerMoveScript.instance.menuState == 2) {
