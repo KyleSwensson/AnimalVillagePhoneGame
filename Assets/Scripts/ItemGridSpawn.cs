@@ -14,21 +14,20 @@ public class ItemGridSpawn : MonoBehaviour {
     public GameObject selectedItem; // this changes to the selected object when obj selected, null otherwise.
     public GameObject thisContButton;
     public GameObject thisBackButton;
-	Vector3[] gridPos = new Vector3[12];
+	Vector3[] gridPos = new Vector3[10];
 	// Use this for initialization
 	void Start () {
-		gridPos[0] = new Vector3 (transform.position.x + 0, transform.position.y + 0);
-		gridPos[1] = new Vector3 (transform.position.x + 1,transform.position.y +  0);
-		gridPos[2] = new Vector3 (transform.position.x + 2,transform.position.y +  0);
-		gridPos[3] = new Vector3 (transform.position.x + 0,transform.position.y +  1);
-		gridPos[4] = new Vector3 (transform.position.x + 1,transform.position.y +  1);
-		gridPos[5] = new Vector3 (transform.position.x + 2,transform.position.y +  1);
-		gridPos[6] = new Vector3 (transform.position.x + 3,transform.position.y +  1);
-		gridPos[7] = new Vector3 (transform.position.x + 4,transform.position.y +  1);
-		gridPos[8] = new Vector3 (transform.position.x + 0,transform.position.y +  2);
-		gridPos[9] = new Vector3 (transform.position.x + 1,transform.position.y + 2);
-		gridPos[10] = new Vector3 (transform.position.x + 2,transform.position.y +  2);
-		gridPos[11] = new Vector3 (transform.position.x + 3,transform.position.y +  2);
+		gridPos[0] = new Vector3 (transform.position.x + 1.23f, transform.position.y + 2.25f);
+		gridPos[1] = new Vector3 (transform.position.x + 2.23f,transform.position.y +  2.25f);
+		gridPos[2] = new Vector3 (transform.position.x + .23f,transform.position.y +  1.25f);
+		gridPos[3] = new Vector3 (transform.position.x + 1.23f,transform.position.y +  1.25f);
+		gridPos[4] = new Vector3 (transform.position.x + 2.23f,transform.position.y +  1.25f);
+		gridPos[5] = new Vector3 (transform.position.x + 3.23f,transform.position.y +  1.25f);
+		gridPos[6] = new Vector3 (transform.position.x + 0.23f,transform.position.y +  2.25f);
+		gridPos[7] = new Vector3 (transform.position.x + 1.23f,transform.position.y +  2.25f);
+		gridPos[8] = new Vector3 (transform.position.x + 2.23f,transform.position.y +  2.25f);
+		gridPos[9] = new Vector3 (transform.position.x + 3.23f,transform.position.y + 2.25f);
+	
 
 
 		int accum = 0;
